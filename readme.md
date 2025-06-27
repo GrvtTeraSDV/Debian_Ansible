@@ -2,7 +2,6 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/grvtterasdv/debian-ansible.svg)](https://hub.docker.com/r/grvtterasdv/debian-ansible)
 [![Image Size](https://img.shields.io/docker/image-size/grvtterasdv/debian-ansible/latest)](https://hub.docker.com/r/grvtterasdv/debian-ansible/tags)
-[![Build Status](https://img.shields.io/badge/build-CI-ready-brightgreen)](#)
 
 > 🛠️ Minimal Ansible runner image based on Debian Bookworm, built for automation pipelines and infrastructure deployments.
 
