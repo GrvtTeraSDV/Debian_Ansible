@@ -1,31 +1,30 @@
 FROM debian:bookworm
 
 #-------------------------------------
-#    Run Update and Upgrade
+# Update & install dependencies
 #-------------------------------------
-RUN apt update && apt upgrade -y
-
-#-------------------------------------
-#    Install Essential Packages
-#-------------------------------------
-RUN apt install -y \
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
-    python3-full \
     python3-venv \
-    pipx \
-    python3-setuptools \
     git \
     openssh-client \
-    openssh-server \
     curl \
     ca-certificates \
-    make
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 #-------------------------------------
-#    Install Python Packages
+# Install Ansible & Ansible-lint
 #-------------------------------------
-RUN pipx ensurepath
+RUN python3 -m pip install --upgrade pip --break-system-packages && \
+    pip install --break-system-packages ansible ansible-lint
 
-RUN pipx install  ansible 
-RUN pipx install ansible-lint
+#-------------------------------------
+# Set workdir and entrypoint
+#-------------------------------------
+WORKDIR /ansible
+CMD ["bash"]
